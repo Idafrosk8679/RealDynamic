@@ -1,0 +1,60 @@
+{% extends 'gallery.html.twig' %}
+
+
+{% block gallery %}
+
+<div class="tm-page-col-right">
+	<div class="tm-gallery" id="tmGallery">
+
+		<div class="tm-gallery-item category-2">
+			<figure class="effect-bubba">
+				<img src="{{ asset ('img/gallery/gallery-item-05.jpg')}}" alt="Gallery item" class="img-fluid"/>
+				<figcaption>
+					<h2>Image
+						<span>One</span>
+					</h2>
+					<p>Bubba likes to appear out of thin air.</p>
+					<a href="{{ asset ('img/gallery/gallery-item-05.jpg')}}">View more</a>
+				</figcaption>
+			</figure>
+		</div>
+		<div class="tm-gallery-item category-2">
+			<figure class="effect-bubba">
+				<img src="{{ asset ('img/gallery/gallery-item-12.jpg')}}" alt="Gallery item" class="img-fluid"/>
+				<figcaption>
+					<h2>Image
+						<span>Two</span>
+					</h2>
+					<p>Bubba likes to appear out of thin air.</p>
+					<a href="{{ asset ('img/gallery/gallery-item-12.jpg')}}">View more</a>
+				</figcaption>
+			</figure>
+		</div>
+		<div class="tm-gallery-item category-2">
+			<figure class="effect-bubba">
+				<img src="{{ asset ('img/gallery/gallery-item-09.jpg')}}" alt="Gallery item" class="img-fluid"/>
+				<figcaption>
+					<h2>Image
+						<span>Three</span>
+					</h2>
+					<p>Bubba likes to appear out of thin air.</p>
+					<a href="{{ asset ('img/gallery/gallery-item-09.jpg')}}">View more</a>
+				</figcaption>
+			</figure>
+		</div>
+		<div class="tm-gallery-item category-2">
+			<figure class="effect-bubba">
+				<img src="{{ asset ('img/gallery/gallery-item-11.jpg')}}" alt="Gallery item" class="img-fluid"/>
+				<figcaption>
+					<h2>Image
+						<span>Four</span>
+					</h2>
+					<p>Bubba likes to appear out of thin air.</p>
+					<a href="{{ asset ('img/gallery/gallery-item-11.jpg')}}">View more</a>
+				</figcaption>
+			</figure>
+		</div>
+	</div>	
+</div>
+
+{% endblock %}

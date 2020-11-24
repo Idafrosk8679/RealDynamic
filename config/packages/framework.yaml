@@ -15,3 +15,24 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    assets:
+        packages:
+
+            gallery:
+                base_path: '/img/gallery'
+
+            img:
+                base_path: '/img'
+
+            css:
+                base_path: '/css'
+
+            fontawesome:
+                base_path: '/fontawesome/css'
+            
+            slick:
+                base_path: '/slick'
+
+            js:
+                base_path: '/js'

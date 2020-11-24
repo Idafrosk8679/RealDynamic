@@ -2,11 +2,113 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{titulo}}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('bootstrap.min.css', 'css')}}">
+        <link rel="stylesheet" href="{{ asset ('all.min.css', 'fontawesome')}}">
+        <link rel="stylesheet" href="{{ asset ('slick.css', 'slick')}}">
+        <link rel="stylesheet" href="{{ asset ('slick-theme.css', 'slick')}}">
+        <link rel="stylesheet" href="{{ asset ('templatemo-real-dynamic.css', 'css')}}">
+        {% endblock %}
+
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset ('jquery-3.4.1.min.js', 'js')}}"></script>
+        <script src="{{ asset ('bootstrap.min.js', 'js')}}"></script>
+        <script src="{{ asset ('parallax.min.js', 'js')}}"></script>
+        <script src="{{ asset ('slick.min.js', 'slick')}}"></script>
+        <script src="{{ asset ('tooplate-script.js', 'js')}}"></script>
+        <script>
+        $(document).ready(function () {
+            // Testimonials carousel
+            $('.tm-carousel').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+        </script>
+        <script>
+         $(document).ready(function () {
+            /* Isotope Gallery */            
+            var $gallery = $(".tm-gallery").isotope({
+                itemSelector: ".tm-gallery-item",
+                filter: '.category-1'
+                // layoutMode: "fitRows"
+            });
+            // layout Isotope after each image loads
+            $gallery.imagesLoaded().progress(function () {
+                $gallery.isotope("layout");
+            });
+
+            $(".filters-button-group").on("click", "a", function () {
+                var filterValue = $(this).attr("data-filter");
+                $gallery.isotope({ filter: filterValue });
+            });
+
+            /* Categories */
+            $(".tabgroup > div").hide();
+            $(".tabgroup > div:first-of-type").show();
+            $(".tabs a").click(function (e) {
+                e.preventDefault();
+                var $this = $(this),
+                    tabgroup = "#" + $this.parents(".tabs").data("tabgroup"),
+                    others = $this
+                        .closest("li")
+                        .siblings()
+                        .children("a"),
+                    target = $this.attr("href");
+                others.removeClass("active");
+                $this.addClass("active");
+
+                // Scroll to tab content (for mobile)
+                if ($(window).width() < 992) {
+                    $("html, body").animate(
+                        {
+                            scrollTop: $("#tmGallery").offset().top
+                        },
+                        200
+                    );
+                }
+            });
+
+            // Magnific Pop up
+            $('.tm-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: { enabled: true }
+            });
+
+            // Testimonials carousel
+            $('.tm-carousel').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+        </script>
+        <script>
+                var posts = $('.post');
+        posts.hide();
+
+        $("#category li a").click(function () {
+
+            var customType = $(this).data('filter');
+            console.log(customType);
+            console.log(posts.length);
+
+            posts.hide();
+            $("#" + customType).show();
+        });
+        </script>
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,177 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block section %}
+
+<body>
+
+    <div class="tm-container">
+        <div class="parallax-window" data-parallax="scroll" data-image-src="{{ asset ('img/real-dynamic-banner-03.jpg')}}"></div>
+    </div>
+
+    <div class="tm-container bg-white">
+        <div class="tm-header-stripe w-100"></div>
+        <div class="container-fluid">
+            <div class="row tm-mb-1">
+                <div class="col-12">
+                    <h2 class="tm-text-primary text-center tm-my-1 tm-mb-5 tm-intro-text">Multiple Image Gallery</h2>
+                </div>
+
+                {# Inicio prueba #}
+
+                {# {% block section %} #}
+    
+
+                        <h1>{{titulo}}</h1>
+
+                        <ul class="project-list clearfix">
+
+                                {% set imagesPerPage = 4 %}
+                                {% set minimo = ((currentPage - 1) * imagesPerPage) + 1 %}
+                                {% set maximo = (currentPage * imagesPerPage) +1 %}
+                                {% for images in data %}
+                                    {% if loop.index >= minimo and loop.index < maximo %}
+                                    <li class="images-thumb">
+                                        <div class="thumb">
+                                        {% set numImages = images.id - 1 %}
+                                            {# <a href="{{path('proyectosDetalle', {'numProyectos': proyect.id }) }}" title="{{proyect.titulo}}" ><img src="../images/thumbs/{{ proyect.imagenes[0] }}" alt="" /> </a> #}
+                                        </div>
+                                        <h3 class="entry-title">{{images.titulo}}</h3>
+                                        <img src="/img/gallery/{{images.imagenes}}" alt="Image"/>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                        </ul>
+                        <div class="paginador">
+                            {% set totalPages = data|length % 4 %}
+                            <a href="{{path('gallery', {'currentPage':1}) }}"><<</a>
+
+                            {% set paginaSiguiente = currentPage %}
+                            {% if  paginaSiguiente <= totalPages %}
+                            <a href="{{path('gallery', {'currentPage':paginaSiguiente}) }}">{{paginaSiguiente}}</a>
+                           
+                            {% endif %}
+
+                            <a href="{{path('gallery', {'currentPage':currentPage }) }}">{{currentPage}}</a>
+
+                            {% set paginaAnterior = currentPage + 1 %}
+                            {% if  paginaAnterior > 0 %}
+                            <a href="{{path('gallery', {'currentPage':paginaAnterior}) }}">{{paginaAnterior}}</a>
+                            
+                            {% endif %}
+
+                            <a href="{{path('gallery', {'currentPage': totalPages}) }}">>></a>
+                        </div>
+
+                        {# Fin prueba #}
+                    {# {% block section %}{% endblock %} #}
+
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="tm-mb-2">
+                <h2 class="text-center tm-text-primary tm-h2-big tm-mb-6">Our Happy Customers</h2>
+                <!-- Carousel -->
+                <div class="col-lg-6 mx-auto tm-mb-4">
+                    <div class="tm-carousel">
+                        <div class="text-center">
+                            <h3 class="tm-mb-4 tm-text-dark-gray">Vivamus vitae condimentum</h3>
+                            <p class="tm-mb-4">Vestibulum condimentum, elit nec tempus suscipit, enim nibh aliquam eros, sit amet iaculis nibh nibh at dolor. Cras imperdiet, dolor posuere dignissim dapibus, tortor arcu pellentesque orci, et mattis libero justo semper neque.</p>
+                            <div class="rating">
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="tm-mb-4 tm-text-dark-gray">Cras imperdiet, dolor posuere</h3>
+                            <p class="tm-mb-4">Elit nec tempus suscipit, enim nibh aliquam eros, sit amet iaculis nibh Vestibulum condimentum, nibh at dolor.Vivamus vitae condimentum dignissim dapibus, tortor arcu pellentesque orci, et mattis libero justo semper neque.</p>
+                            <div class="rating">
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="tm-mb-4 tm-text-dark-gray">Elit nec tempus suscipit</h3>
+                            <p class="tm-mb-4">Cras imperdiet, dolor posuere dignissim dapibus, tortor arcu pellentesque orci, et mattis libero justo semper neque.Vivamus vitae condimentum. Elit nec tempus suscipit, enim nibh aliquam eros, sit amet iaculis nibh nibh at dolor. </p>
+                            <div class="rating">
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="tm-mb-4 tm-text-dark-gray">Tempus suscipit, enim</h3>
+                            <p class="tm-mb-4">Tortor arcu pellentesque orci, et mattis libero justo semper neque. Vestibulum condimentum, elit nec tempus suscipit, enim nibh aliquam eros, sit amet iaculis nibh nibh at dolor. Cras imperdiet, dolor posuere dignissim dapibus.</p>
+                            <div class="rating">
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="tm-mb-4 tm-text-dark-gray">Dolor posuere dignissim dapibus</h3>
+                            <p class="tm-mb-4">Posuere dignissim dapibus, tortor arcu pellentesque orci, et mattis libero justo semper neque. Vestibulum condimentum, elit nec tempus suscipit, enim nibh aliquam eros, sit amet iaculis nibh nibh at dolor. Vivamus vitae condimentum dolor.</p>
+                            <div class="rating">
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star checked"></span>
+                                <span class="star fas fa-star"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row tm-mb-7">
+                <div class="col-lg-4 col-sm-6 mb-lg-0 mb-5">
+                    <h3 class="tm-text-primary tm-mb-4">Useful Readings</h3>
+                    <nav class="tm-nav-secondary">
+                        <ul>
+                            <li><a href="#">Laoreet eget justo</a></li>
+                            <li><a href="#">Rhoncus volupat turpi</a></li>
+                            <li><a href="#">Nulla euismod erat</a></li>
+                            <li><a href="#">Donc a laoreet ipsum</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-lg-0 mb-5">
+                    <h3 class="tm-text-primary tm-mb-4">Main Menu</h3>
+                    <nav class="tm-nav-secondary">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/gallery">Gallery</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-lg-0 mb-5">
+                    <h3 class="tm-text-primary tm-mb-4">About Real Dynamic</h3>
+                    <p class="tm-mb-4">Ut non orci semper, semper velit sit amet, ornare velit. Vestibulum id ipsum et justo bibendum ornare id sit amet arcu. Integer placerat magna.</p>
+                    <div>
+                        <a href="https://youtube.com" class="tm-social-link"><i class="fab fa-youtube tm-social-icon"></i></a>
+                        <a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook tm-social-icon"></i></a>
+                        <a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter tm-social-icon"></i></a>
+                        <a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram tm-social-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>  
+       
+    </script>
+</body>
+
+{% endblock %}

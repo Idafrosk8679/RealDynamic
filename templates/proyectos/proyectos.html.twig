@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block section %}
+    
+
+<h1>{{titulo}}</h1>
+
+<ul class="project-list clearfix">
+
+        {% set proyectsPerPage = 6 %}
+        {% set minimo = ((currentPage - 1) * proyectsPerPage) + 1 %}
+        {% set maximo = (currentPage * proyectsPerPage) +1 %}
+        {% for proyect in data %}
+            {% if loop.index >= minimo and loop.index < maximo %}
+            <li class="project-thumb">
+                <div class="thumb">
+                {% set numProyectos = proyect.id - 1 %}
+                    <a href="{{path('proyectosDetalle', {'numProyectos': proyect.id }) }}" title="{{proyect.titulo}}" ><img src="../images/thumbs/{{ proyect.imagenes[0] }}" alt="" /> </a>
+                </div>
+                <h3 class="entry-title">{{proyect.titulo|title}}</h3>
+            </li>
+            {% endif %}
+        {% endfor %}
+        
+</ul>
+<div class="paginador">
+    {% set total = data|length % 6 %}
+    <a href="{{path('proyectosLista', {'currentPage':1}) }}"><<</a>
+
+    {% set paginaAnterior = currentPage - 1 %}
+    {% if  paginaAnterior > 0 %}
+    <a href="{{path('proyectosLista', {'currentPage':paginaAnterior}) }}">{{paginaAnterior}}</a>
+    {% endif %}
+
+    <a href="{{path('proyectosLista', {'currentPage':currentPage }) }}">{{currentPage}}</a>
+
+    {% set paginaSiguiente = currentPage + 1 %}
+    {% if  paginaSiguiente <= totalPages %}
+    <a href="{{path('proyectosLista', {'currentPage':paginaSiguiente}) }}">{{paginaSiguiente}}</a>
+    {% endif %}
+
+    <a href="{{path('proyectosLista', {'currentPage': total}) }}">>></a>
+</div>
+
+
+{% endblock %}
+
+
